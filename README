@@ -1,0 +1,30 @@
+spair - slim chess pairing tool
+===============================
+
+_spair_ is a tool, for creating pairings for chess tournaments.
+
+It is written in ANSI C and less dependencies of third party libraries to ensure
+a maximum of compatibility to POSIX systems.
+
+
+Configuration
+-------------
+To modify the configuration to match your current system, edit `config.mk` file.
+The following options are well known and required.
+ * `PREFIX`     The installation root.
+ * `LOCALEDIR`  The installation path of the MO files (localization).
+ * `CC`         The C compiler command to use.
+
+You could also specify your own compiler and linker flags by changing the values
+for `CPPFLAGS`, `CFLAGS`, `LDFLAGS` and `LDLIBS`.
+
+
+Installation
+------------
+To install _spair_, edit `config.mk` to your needs (e.g. change the imstallation
+PREFIX) and run the following commands:
+`$ make`  
+`$ make install`  
+
+This will build _spair_ from source and install it to the specified path in
+`config.mk`. Make sure to have the permission to write to `PREFIX` directory.
