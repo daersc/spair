@@ -11,7 +11,8 @@
 
 include config.mk
 
-SRCS = spair.c
+SRCS = spair.c types.c roundrobin.c
+HDRS =         types.h roundrobin.h
 OBJS = $(SRCS:.c=.o)
 
 DEP = .depend.mk
@@ -63,7 +64,7 @@ uninstall:
 dist: clean
 	@$(PRINTSTEP) TAR spair-$(VERSION).tar.gz
 	@mkdir -p spair-$(VERSION)
-	@cp config.mk Makefile $(SRCS) LICENSE README spair-$(VERSION)
+	@cp config.mk Makefile $(SRCS) $(HDRS) LICENSE README spair-$(VERSION)
 	@tar cf spair-$(VERSION).tar spair-$(VERSION)
 	@gzip spair-$(VERSION).tar
 	@rm -rf spair-$(VERSION)
