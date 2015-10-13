@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-13 12:15+0200\n"
+"POT-Creation-Date: 2015-10-13 13:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,22 +17,50 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: spair.c:46
+#: spair.c:54
 #, c-format
 msgid "Option -%c requires an argument\n"
 msgstr ""
 
-#: spair.c:49
+#: spair.c:57
 #, c-format
 msgid "Unrecognized option: '-%c'\n"
 msgstr ""
 
-#: spair.c:59
+#: spair.c:67
 #, c-format
 msgid "spair-%s, (c) 2015 David Schury, see LICENSE for details\n"
 msgstr ""
 
-#: spair.c:66
+#: spair.c:75
 #, c-format
 msgid "Usage: %s\n"
+msgstr ""
+
+#: spair.c:76
+msgid "Print this help and exit."
+msgstr ""
+
+#: spair.c:77
+msgid "Print version information and exit."
+msgstr ""
+
+#: spair.c:78
+msgid "Read list of players from STDIN and print roundobin pairings."
+msgstr ""
+
+#: spair.c:100
+msgid "Could not allocate memory for player"
+msgstr ""
+
+#: spair.c:106
+msgid "Could not allocate memory for player's name"
+msgstr ""
+
+#: spair.c:121
+msgid "Round"
+msgstr ""
+
+#: spair.c:123 spair.c:124
+msgid "<bye>"
 msgstr ""

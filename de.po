@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-13 12:15+0200\n"
+"POT-Creation-Date: 2015-10-13 13:46+0200\n"
 "PO-Revision-Date: 2015-10-13 12:05+0200\n"
 "Last-Translator: David Schury <dasc@posteo.de>\n"
 "Language-Team: German\n"
@@ -18,22 +18,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: spair.c:46
+#: spair.c:54
 #, c-format
 msgid "Option -%c requires an argument\n"
 msgstr "Option -%c benötigt ein Argument\n"
 
-#: spair.c:49
+#: spair.c:57
 #, c-format
 msgid "Unrecognized option: '-%c'\n"
 msgstr "Unbekannte Option: '-%c'\n"
 
-#: spair.c:59
+#: spair.c:67
 #, c-format
 msgid "spair-%s, (c) 2015 David Schury, see LICENSE for details\n"
 msgstr "spair-%s, (c) 2015 David Schury, für Details siehe LICENSE\n"
 
-#: spair.c:66
+#: spair.c:75
 #, c-format
 msgid "Usage: %s\n"
 msgstr "Aufruf: %s\n"
+
+#: spair.c:76
+msgid "Print this help and exit."
+msgstr "Zeige diesen Hilfetext an und beende."
+
+#: spair.c:77
+msgid "Print version information and exit."
+msgstr "Zeige Versions-Informationen an und beende."
+
+#: spair.c:78
+msgid "Read list of players from STDIN and print roundobin pairings."
+msgstr "Lies Spieler von STDIN ein und gib Rundenturnier-Paarungen aus."
+
+#: spair.c:100
+msgid "Could not allocate memory for player"
+msgstr "Konnte keinen Speicher für Spieler anfordern"
+
+#: spair.c:106
+msgid "Could not allocate memory for player's name"
+msgstr "Konnte keinen Speicher für Spielernamen anfordern"
+
+#: spair.c:121
+msgid "Round"
+msgstr "Runde"
+
+#: spair.c:123 spair.c:124
+msgid "<bye>"
+msgstr "<spielfrei>"
