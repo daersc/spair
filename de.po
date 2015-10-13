@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-13 12:06+0200\n"
+"POT-Creation-Date: 2015-10-13 12:15+0200\n"
 "PO-Revision-Date: 2015-10-13 12:05+0200\n"
 "Last-Translator: David Schury <dasc@posteo.de>\n"
 "Language-Team: German\n"
@@ -18,7 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: spair.c:31
+#: spair.c:46
 #, c-format
-msgid "Hello world!\n"
-msgstr "Hallo Welt!\n"
+msgid "Option -%c requires an argument\n"
+msgstr "Option -%c benötigt ein Argument\n"
+
+#: spair.c:49
+#, c-format
+msgid "Unrecognized option: '-%c'\n"
+msgstr "Unbekannte Option: '-%c'\n"
+
+#: spair.c:59
+#, c-format
+msgid "spair-%s, (c) 2015 David Schury, see LICENSE for details\n"
+msgstr "spair-%s, (c) 2015 David Schury, für Details siehe LICENSE\n"
+
+#: spair.c:66
+#, c-format
+msgid "Usage: %s\n"
+msgstr "Aufruf: %s\n"
