@@ -14,13 +14,13 @@
 
 #include "roundrobin.h"
 
-#define MAX_NAME_LEN  0xff /* 255 */
-#define CL_OPT_STRING ":hvr"
+#define CL_OPT_STRING ":hvp:r"
 
 static void init_locale(void);
 static void parse_args(int argc, char **argv);
 static void print_version(void);
 static void print_help(void);
+static void print_pairing_table(unsigned int count);
 static void pair_roundrobin(void);
 
 static void
@@ -47,6 +47,15 @@ parse_args(int argc, char **argv)
 		case 'v':
 			print_version();
 			exit(EXIT_SUCCESS);
+		case 'p': {
+			unsigned int count;
+			if (!sscanf(optarg, "%u", &count)) {
+				perror("Parsing argument failed");
+				exit(EXIT_FAILURE);
+			}
+			print_pairing_table(count);
+			break;
+		}
 		case 'r':
 			pair_roundrobin();
 			break;
@@ -72,11 +81,59 @@ static void
 print_help(void)
 {
 	const char *fmt = " -%c  %s\n";
-	printf(_("Usage: %s\n"), "spair [-v] [-h] [-r]");
+	printf(_("Usage: %s\n"), "spair [-v] [-h] [-p] [-r]");
 	printf(fmt, 'h', _("Print this help and exit."));
 	printf(fmt, 'v', _("Print version information and exit."));
+	printf(fmt, 'p', _("Print pairing table for a specific number of players."));
 	printf(fmt, 'r', _("Read list of players from STDIN and "
 	                   "print roundobin pairings."));
+}
+
+static void
+print_pairing_table(unsigned int count)
+{
+	Player *list = NULL, *lptr = NULL;
+	Round  *hist = NULL, *rptr = NULL;
+	char   buffer[32];
+	unsigned int i;
+	for (i=1; i<=count; i++) {
+		Player *player = malloc(sizeof(Player));
+		if (!player) {
+			perror(_("Could not allocate memory for player"));
+			goto cleanup;
+		}
+		sprintf(buffer, "%u", i);
+		player->next = NULL;
+		player->name = malloc(sizeof(char)*(strlen(buffer)+1));
+		if (!player->name) {
+			perror(_("Could not allocate memory for player's name"));
+			free(player);
+			goto cleanup;
+		}
+		strcpy(player->name, buffer);
+		if (lptr) lptr->next = player;
+		else list = player;
+		lptr = player;
+	}
+
+	hist = rptr = roundrobin(list);
+	i = 1;
+	while (rptr) {
+		Pairing *pptr = rptr->pairings;
+		printf("%s %u:", _("Round"), i);
+		while (pptr) {
+			printf("\t%s-%s", pptr->white ? pptr->white->name : "/",
+			                 pptr->black ? pptr->black->name : "/");
+			pptr = pptr->next;
+		}
+		printf("\n");
+		rptr = rptr->next;
+		i++;
+	}
+
+	cleanup:
+	free_players(list);
+	free_rounds(hist);
 }
 
 static void
@@ -86,19 +143,19 @@ pair_roundrobin(void)
 	Round  *hist = NULL, *rptr = NULL;
 	char   *buffer = NULL;
 	size_t buflen  = 0;
-	unsigned int i, j;
+	unsigned int i;
 	while (getline(&buffer, &buflen, stdin) != -1) {
 		Player *player = malloc(sizeof(Player));
 		size_t pos;
+		if (!player) {
+			perror(_("Could not allocate memory for player"));
+			goto cleanup;
+		}
 		for (pos = 0; pos < buflen; pos++) {
 			if (buffer[pos] == '\n') {
 				buffer[pos] = '\0';
 				break;
 			}
-		}
-		if (!player) {
-			perror(_("Could not allocate memory for player"));
-			goto cleanup;
 		}
 		player->next = NULL;
 		player->name = malloc(sizeof(char) * (strlen(buffer)+1));
@@ -117,13 +174,11 @@ pair_roundrobin(void)
 	i = 1;
 	while (rptr) {
 		Pairing *pptr = rptr->pairings;
-		j=1;
 		printf(i==1 ? "%s %u\n" : "\n%s %u\n", _("Round"), i);
 		while (pptr) {
 			printf(" %20s : %-20s\n", pptr->white ? pptr->white->name : _("<bye>"),
 			                          pptr->black ? pptr->black->name : _("<bye>"));
 			pptr = pptr->next;
-			j++;
 		}
 		rptr = rptr->next;
 		i++;
