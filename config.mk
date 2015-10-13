@@ -5,13 +5,20 @@
 VERSION = "0.0.0"
 
 # directories
-PREFIX = /usr/local
+PREFIX    = /usr/local
+LOCALEDIR = $(PREFIX)/share/locale
 
 # compiler and linker flags
-CPPFLAGS =
+CPPFLAGS = -D_POSIX_C_SOURCE=200809L
 CFLAGS   = -std=c99 -pedantic -Wall
 LDFLAGS  =
 LDLIBS   =
 
 # compilers
 CC = cc
+
+# Gettext support
+USING_GETTEXT = 1
+ifeq ($(USING_GETTEXT),1)
+	#LDLIBS += -lintl
+endif

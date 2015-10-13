@@ -1,0 +1,24 @@
+# German translations for spair package
+# German translation for spair.
+# Copyright (C) 2015 David Schury
+# This file is distributed under the same license as the spair package.
+# David Schury <dasc@posteo.de>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-13 12:06+0200\n"
+"PO-Revision-Date: 2015-10-13 12:05+0200\n"
+"Last-Translator: David Schury <dasc@posteo.de>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: spair.c:31
+#, c-format
+msgid "Hello world!\n"
+msgstr "Hallo Welt!\n"
