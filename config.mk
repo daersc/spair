@@ -6,6 +6,7 @@ VERSION = "0.0.1"
 
 # directories
 PREFIX    = /usr/local
+MANPREFIX = $(PREFIX)/share/man
 LOCALEDIR = $(PREFIX)/share/locale
 
 # compiler and linker flags

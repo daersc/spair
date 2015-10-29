@@ -14,7 +14,7 @@
 
 #include "roundrobin.h"
 
-#define CL_OPT_STRING ":hvp:r"
+#define CL_OPT_STRING ":hvp:"
 
 static void init_locale(void);
 static void parse_args(int argc, char **argv);
@@ -54,11 +54,8 @@ parse_args(int argc, char **argv)
 				exit(EXIT_FAILURE);
 			}
 			print_pairing_table(count);
-			break;
+			exit(EXIT_SUCCESS);
 		}
-		case 'r':
-			pair_roundrobin();
-			break;
 		case ':':
 			fprintf(stderr, _("Option -%c requires an argument\n"), optopt);
 			exit(EXIT_FAILURE);
@@ -81,12 +78,11 @@ static void
 print_help(void)
 {
 	const char *fmt = " -%c  %s\n";
-	printf(_("Usage: %s\n"), "spair [-v] [-h] [-p] [-r]");
+	printf(_("Usage: %s\n"), "spair [-v] [-h] [-p]");
+	printf(_("Read list of players from STDIN and print roundobin pairings.\n"));
 	printf(fmt, 'h', _("Print this help and exit."));
 	printf(fmt, 'v', _("Print version information and exit."));
 	printf(fmt, 'p', _("Print pairing table for a specific number of players."));
-	printf(fmt, 'r', _("Read list of players from STDIN and "
-	                   "print roundobin pairings."));
 }
 
 static void
@@ -195,5 +191,6 @@ main(int argc, char **argv)
 {
 	init_locale();
 	parse_args(argc, argv);
+	pair_roundrobin();
 	return EXIT_SUCCESS;
 }

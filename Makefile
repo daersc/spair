@@ -75,11 +75,14 @@ $(POTSRC): $(SRCS)
 install: compile
 	@$(PRINTSTEP) INSTALL $(DESTDIR)$(PREFIX)
 	@mkdir -p $(DESTDIR)$(PREFIX)/bin
+	@mkdir -p $(DESTDIR)$(MANPREFIX)/man1
 	@mkdir -p $(DESTDIR)$(PREFIX)/share/doc/spair
 	@cp -f spair $(DESTDIR)$(PREFIX)/bin
+	@sed "s/VERSION/$(VERSION)/g" < spair.1 > $(DESTDIR)$(MANPREFIX)/man1/spair.1
 	@cp -f README $(DESTDIR)$(PREFIX)/share/doc/spair
 	@cp -f LICENSE $(DESTDIR)$(PREFIX)/share/doc/spair
 	@chmod 755 $(DESTDIR)$(PREFIX)/bin/spair
+	@chmod 644 $(DESTDIR)$(MANPREFIX)/man1/spair.1
 	@chmod 644 $(DESTDIR)$(PREFIX)/share/doc/spair/README
 	@chmod 644 $(DESTDIR)$(PREFIX)/share/doc/spair/LICENSE
 	@if (( $(USING_GETTEXT) )); then \
@@ -94,6 +97,7 @@ install: compile
 uninstall:
 	@$(PRINTSTEP) UNINSTALL $(DESTDIR)$(PREFIX)
 	@rm -f $(DESTDIR)$(PREFIX)/bin/spair
+	@rm -f $(DESTDIR)$(MANPREFIX)/man1/spair.1
 	@rm -f $(DESTDIR)$(PREFIX)/share/doc/spair/README
 	@rm -f $(DESTDIR)$(PREFIX)/share/doc/spair/LICENSE
 	@if (( $(USING_GETTEXT) )); then \
@@ -107,7 +111,7 @@ dist: clean
 	@$(PRINTSTEP) TAR spair-$(VERSION).tar.gz
 	@mkdir -p spair-$(VERSION)
 	@cp config.mk Makefile $(SRCS) $(POTSRC) $(POSRCS) $(MOOBJS) $(HDRS) \
-		LICENSE README spair-$(VERSION)
+		LICENSE README spair.1 spair-$(VERSION)
 	@tar cf spair-$(VERSION).tar spair-$(VERSION)
 	@gzip spair-$(VERSION).tar
 	@rm -rf spair-$(VERSION)

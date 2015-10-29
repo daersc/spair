@@ -1,0 +1,32 @@
+.TH SPAIR 1 spair\-VERSION
+.SH NAME
+spair \- slim chess pairing tool
+.SH SYNOPSIS
+.B spair
+.RB [ \-hv ]
+.RB [ \-p
+.IR num ]
+.SH DESCRIPTION
+.B spair
+is a slim tool for generating pairing tables for round robin tournaments.
+It reads player names line by line from STDIN until
+.B EOF
+is reached and prints out a complete round robin like pairing table to STDOUT.
+.SH OPTIONS
+.TP
+.BI \-h
+Output a usage message and exit.
+.TP
+.BI \-v
+Output the version number of
+.B spair
+and exit.
+.TP
+.BI \-p " num"
+Generate anonymous pairing table for
+.I num
+players instead of reading names from STDIN.
+.SH AUTHORS
+Written by David Schury.
+.SH LICENSE
+See the LICENSE file for the terms of redistribution.
