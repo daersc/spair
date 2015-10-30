@@ -85,7 +85,7 @@ install: compile
 	@chmod 644 $(DESTDIR)$(MANPREFIX)/man1/spair.1
 	@chmod 644 $(DESTDIR)$(PREFIX)/share/doc/spair/README
 	@chmod 644 $(DESTDIR)$(PREFIX)/share/doc/spair/LICENSE
-	@if (( $(USING_GETTEXT) )); then \
+	@if [ $(USING_GETTEXT) ] ; then \
 		for loc in $(LOCALES) ; \
 		do \
 			mkdir -p ${DESTDIR}${LOCALEDIR}/$$loc/LC_MESSAGES ; \
@@ -100,7 +100,7 @@ uninstall:
 	@rm -f $(DESTDIR)$(MANPREFIX)/man1/spair.1
 	@rm -f $(DESTDIR)$(PREFIX)/share/doc/spair/README
 	@rm -f $(DESTDIR)$(PREFIX)/share/doc/spair/LICENSE
-	@if (( $(USING_GETTEXT) )); then \
+	@if [ $(USING_GETTEXT) ] ; then \
 		for loc in $(LOCALES) ; \
 		do \
 			rm -f  ${DESTDIR}${LOCALEDIR}/$$loc/LC_MESSAGES/spair.mo ; \

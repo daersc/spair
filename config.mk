@@ -2,7 +2,7 @@
 # see LICENSE file for license and copyright information
 
 # spair version
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 # directories
 PREFIX    = /usr/local
